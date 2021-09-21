@@ -7,3 +7,22 @@
 1632228915544:c = 5
 1632228915557:d = 3
 1632228915569:c * d
+1632229391880:#データの読み込み
+1632229391892:jhk = read.csv(~/R_Multivariate_Analysis0726/第01章)
+1632229420400:#データの読み込み
+1632229420413:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章")
+1632229463958:#データの読み込み
+1632229463967:jhk = read.csv("/R_Multivariate_Analysis0726/第01章")
+1632229524103:#データの読み込み
+1632229524115:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章/人事評価結果.csv")
+1632229624161:#データの読み込み
+1632229624173:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章/人事評価結果.csv", fileEncoding = "utf8")
+1632229642793:head(jhk)
+1632229679008:#データの読み込み
+1632229679022:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章/人事評価結果.csv", fileEncoding = "shift-jis")
+1632229681788:head(jhk)
+1632229694420:View(jhk)
+1632229829507:#データの確認
+1632229829520:dim(jhk)
+1632229849824:colnames(jhk)
+1632229864859:head(jhk, 3)
