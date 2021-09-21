@@ -1,3 +1,4 @@
 {
-    "context_id": "361FFC9B"
+    "context_id": "361FFC9B",
+    "error_handler_type": "traceback"
 }
