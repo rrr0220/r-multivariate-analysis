@@ -26,3 +26,64 @@
 1632229829520:dim(jhk)
 1632229849824:colnames(jhk)
 1632229864859:head(jhk, 3)
+1632234184351:dim(jhk)
+1632234184371:colnames(jhk)
+1632234184383:head(jhk, 3)
+1632234573519:head(jhk, 3)
+1632234622322:#histogramによるヒストグラムの描画
+1632234622335:histogram(~ストレス, data=jhk, breaks=20, type='count')
+1632234784370:#代表値の算出
+1632234784382:mean(jhk$ストレス)
+1632234797152:median(jhk$ストレス)
+1632234837874:sort(table(jhk$ストレス))
+1632234853841:sort(table(jhk$年代))
+1632235000825:#散布度の算出
+1632235000837:sd(jhk$ストレス)
+1632235025912:var(jhk$ストレス)
+1632235230463:#中央値からの平均偏差の算出
+1632235230477:mean(abs(jhk$ストレス-median(jhk$ストレス)))
+1632235410831:#群別にヒストグラムを描画
+1632235410843:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632235794783:#群別にヒストグラムを描画
+1632235794796:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632235993314:#群別にヒストグラムを描画
+1632235993328:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632236474714:#群別にヒストグラムを描画
+1632236474727:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632236647505:#群別にヒストグラムを描画
+1632236647518:par(family = "HiraKakuProN-W3")
+1632236649464:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632236667711:#群別にヒストグラムを描画
+1632236667725:par(family = "HiraKakuProN-W3")
+1632236669999:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632236787514:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632236791588:#群別にヒストグラムを描画
+1632236791601:par(family = "HiraKakuProN-W3")
+1632236792432:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632237718523:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632237816561:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632237832235:#histogramによるヒストグラムの描画
+1632237832247:histogram(~ストレス, data=jhk, breaks=20, type='count')
+1632237832608:#代表値の算出
+1632237832620:mean(jhk$ストレス)
+1632237849268:#データの読み込み
+1632237849281:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章/人事評価結果.csv", fileEncoding = "shift-jis")
+1632237849340:#データの確認
+1632237849353:dim(jhk)
+1632237849365:colnames(jhk)
+1632237849379:head(jhk, 3)
+1632237855733:#histogramによるヒストグラムの描画
+1632237855746:histogram(~ストレス, data=jhk, breaks=20, type='count')
+1632237855764:#代表値の算出
+1632237855776:mean(jhk$ストレス)
+1632237855788:median(jhk$ストレス)
+1632237855800:sort(table(jhk$年代))
+1632237855819:#散布度の算出
+1632237855831:sd(jhk$ストレス)
+1632237855845:var(jhk$ストレス)
+1632237855863:#中央値からの平均偏差の算出
+1632237855875:mean(abs(jhk$ストレス-median(jhk$ストレス)))
+1632237862726:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632237886353:library(lattice)
+1632237896576:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632237916794:histogram(~協調性|年代+性別, data=jhk, breaks=15)

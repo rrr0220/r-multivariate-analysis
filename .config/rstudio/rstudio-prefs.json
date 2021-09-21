@@ -1,3 +1,6 @@
 {
-    "jobs_tab_visibility": "shown"
+    "jobs_tab_visibility": "shown",
+    "initial_working_directory": "~",
+    "graphics_backend": "ragg",
+    "posix_terminal_shell": "bash"
 }
