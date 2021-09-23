@@ -87,3 +87,54 @@
 1632237886353:library(lattice)
 1632237896576:histogram(~協調性|年代+性別, data=jhk, breaks=15)
 1632237916794:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632390237951:#群別にヒストグラムを描画
+1632390237964:histogram(~協調性|年代+性別, data=jhk, breaks=15)
+1632390368114:tapply(jhk$協調性, jhk$性別, mean)
+1632390495906:tapply(jhk$協調性, jhk$性別, sd)
+1632390704591:#箱ヒゲ図の描画
+1632390704602:boxplot(jhk$技能)
+1632390733088:boxplot(jhk$技能, horizontal=TRUE)
+1632390808698:boxplot(協調性~性別, data=jhk, horizontal=TRUE)
+1632390896335:#四分位数を含めたようやく統計量の算出
+1632390896345:summary(jhk$技能)
+1632390969625:#histogramによるヒストグラムの描画
+1632390969640:histogram(~ストレス, data=jhk, breaks=20, type='count')
+1632390991446:histogram(~技能, data=jhk, breaks=20, type='count')
+1632391008921:#四分位数を含めたようやく統計量の算出
+1632391008932:summary(jhk$技能)
+1632391009964:boxplot(jhk$技能, horizontal=TRUE)
+1632391011720:histogram(~技能, data=jhk, breaks=20, type='count')
+1632391143718:#等分散性に関するF検定
+1632391143728:var.test(協調性~性別, data+jhk)
+1632391156993:#等分散性に関するF検定
+1632391157005:var.test(協調性~性別, data=jhk)
+1632391266729:?var.test
+1632395804415:#等分散性に関するF検定
+1632395804427:var.test(協調性~性別, data=jhk)
+1632396094815:#独立な2群のt検定（等分散を仮定）
+1632396094827:t.test(協調性~性別, data=jhk, var.equal=TRUE)
+1632396270522:#Welch法によるt検定
+1632396270534:t.test(協調性~性別, data=jhk)
+1632396463857:#対応のあるt検定
+1632396463870:score = c(jhk$総合, jhk$昨年総合)
+1632396469629:score
+1632396549742:year = c(rep("今年", 800), rep("昨年", 800))
+1632396553175:year
+1632396663319:t.test(score~year, paired=True)
+1632396671414:score = c(jhk$総合, jhk$昨年総合)
+1632396671427:year = c(rep("今年", 800), rep("昨年", 800))
+1632396671440:t.test(score~year, paired=True)
+1632396693068:t.test(score~year, paired=TRUE)
+1632397312791:#群ごとに信頼区間を描画
+1632397312800:plotmeans(協調性~性別, data=jhk, p=0.95, ylim=c(49, 54))
+1632397352317:#群ごとに信頼区間を描画
+1632397352329:plotmeans(協調性~性別, data=jhk, p=0.95, ylim=c(49, 54))
+1632397487160:#信頼区間の算出
+1632397487173:t.test(jhk$協調性[jhk$性別=="F"])
+1632397517747:t.test(jhk$協調性[jhk$性別=="M"])
+1632397597457:?t.test
+1632397666411:#信頼区間の算出
+1632397666423:t.test(jhk$協調性[jhk$性別=="F"], conf.level = 0.99)
+1632397685456:#信頼区間の算出
+1632397685468:t.test(jhk$協調性[jhk$性別=="F"])
+1632397711835:t.test(jhk$協調性[jhk$性別=="M"], conf.level = 0.99)
