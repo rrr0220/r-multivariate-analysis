@@ -5,5 +5,6 @@ library(patchwork)
 library(lubridate)
 library(lattice)
 library(gplots)
-
+library(psych)
+library(vcd)
 
