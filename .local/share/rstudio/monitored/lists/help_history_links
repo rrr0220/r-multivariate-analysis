@@ -1,3 +1,5 @@
 help/library/stats/html/var.test.html,R: F Test to Compare Two Variances
 help/library/stats/html/t.test.html,R: Student's t-Test
 help/library/stats/html/xtabs.html,R: Cross Tabulation
+help/library/MBESS/html/conf.limits.nct.html,R: Confidence limits for a noncentrality parameter from a...
+help/library/stats/html/Normal.html,R: The Normal Distribution
