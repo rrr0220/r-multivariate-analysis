@@ -327,3 +327,36 @@
 1632503976216:jhk4
 1632504041302:#最尤法で相関行列の算出
 1632504041316:hetcor(jhk4, ML=TRUE)
+1632590392999:#関数effectd1の読み込み
+1632590393022:effectd1 = function(x1, x2, clevel=0.95){
+1632590393034:library(MBESS)
+1632590393046:#各群の標本サイズの算出
+1632590393058:n1 = length(x1); n2 = length(x2)
+1632590393071:#各群の平均の算出
+1632590393083:m1 = mean(x1); m2 = mean(x2)
+1632590393096:#各群の標本標準偏差の算出
+1632590393109:s1 = sqrt(mean((x1-m1)**2)); s2 = sqrt(mean((x2-m2)**2))
+1632590393121:#母標準偏差の推定値の算出
+1632590393133:sast = sqrt(((n1*s1**2)+(n2*s2**2))/(n1+n2-2))
+1632590393146:#効果量の算出
+1632590393157:d = (m1-m2)/sast
+1632590393170:#独立な2群のt検定の実行（等分散仮定）と自由度の算出
+1632590393183:rest = t.test(x1, x2, paired=FALSE, var.equal=TRUE)
+1632590393198:#効果量の信頼区間の算出
+1632590393212:resconf = conf.limits.nct(t.value=rest$statistic, df=rest$parameter, conf.level=clevel)
+1632590393224:ll = resconf$Lower.Limit*sqrt((n1+n2)/(n1*n2))
+1632590393236:ul = resconf$Upper.Limit*sqrt((n1+n2)/(n1*n2))
+1632590393248:u3 = pnorm(d, 0, 1)
+1632590393260:return(list=c(効果量=d, 信頼水準=clevel, 区間下限=ll, 区間上限=ul, U3=u3))
+1632590393273:}
+1632590571110:#独立な2群のt検定に対応した効果量の算出
+1632590571124:fdat = jhk$協調性[jhk$性別=="F"]
+1632590571136:mdat = jhk$協調性[jhk$性別=="M"]
+1632590571149:effectd1(fdat, mdat, clevel=0.95)
+1632591105903:rest = t.test(fdat, mdat, paired=FALSE, var.equal=TRUE)
+1632591121095:t.test(fdat, mdat, paired=FALSE, var.equal=TRUE)
+1632591257449:?conf.limits.nct
+1632591450092:a = t.test(fdat, mdat, paired=FALSE, var.equal=TRUE)
+1632591463931:View(a)
+1632591554009:?conf.limits.nct
+1632591727431:?pnorm
