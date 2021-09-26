@@ -360,3 +360,126 @@
 1632591463931:View(a)
 1632591554009:?conf.limits.nct
 1632591727431:?pnorm
+1632665265989:#関数effectd2の読み込み
+1632665266028:effectd2 = function(x1, x2, clevel=0.95){
+1632665266040:library(MBESS)
+1632665266053:#標本サイズの算出
+1632665266065:n = length(x1-x2)
+1632665266076:#差異の平均v.barの算出
+1632665266089:v.bar = mean(x1-x2)
+1632665266101:#差異の不偏分散の平方根svの算出
+1632665266113:sv.p = sd(x1-x2)
+1632665266125:#効果量の算出
+1632665266137:d.p = v.bar/sv.p
+1632665266148:#対応のあるt検定の実行と自由度の算出
+1632665266161:rest = t.test(x1, x2, paired=TRUE)
+1632665266173:#効果量の信頼区間の算出
+1632665266186:resconf = conf.limits.nct(t.value=rest$statistic, df=rest$parameter, conf.level=clevel)
+1632665266198:ll = resconf$Lower.Limit/sqrt(n)
+1632665266211:ul = resconf$Upper.Limit/sqrt(n)
+1632665266223:u3 = pnorm(d.p, 0, 1)
+1632665266235:return(list=c(効果量=d, 信頼水準=clevel, 区間下限=ll, 区間上限=ul, U3=u3))
+1632665266249:}
+1632665429740:#対応のあるt検定における効果量の算出
+1632665429753:effectd2(jhk$総合, jhk$昨年総合, clevel=0.95)
+1632665460888:#関数effectd2の読み込み
+1632665460900:effectd2 = function(x1, x2, clevel=0.95){
+1632665460913:library(MBESS)
+1632665460924:#標本サイズの算出
+1632665460936:n = length(x1-x2)
+1632665460950:#差異の平均v.barの算出
+1632665460964:v.bar = mean(x1-x2)
+1632665460976:#差異の不偏分散の平方根svの算出
+1632665460989:sv.p = sd(x1-x2)
+1632665461002:#効果量の算出
+1632665461013:d.p = v.bar/sv.p
+1632665461027:#対応のあるt検定の実行と自由度の算出
+1632665461040:rest = t.test(x1, x2, paired=TRUE)
+1632665461052:#効果量の信頼区間の算出
+1632665461064:resconf = conf.limits.nct(t.value=rest$statistic, df=rest$parameter, conf.level=clevel)
+1632665461077:ll = resconf$Lower.Limit/sqrt(n)
+1632665461090:ul = resconf$Upper.Limit/sqrt(n)
+1632665461104:u3 = pnorm(d.p, 0, 1)
+1632665461116:return(list=c(効果量=d.p, 信頼水準=clevel, 区間下限=ll, 区間上限=ul, U3=u3))
+1632665461128:}
+1632665461148:#対応のあるt検定における効果量の算出
+1632665461159:effectd2(jhk$総合, jhk$昨年総合, clevel=0.95)
+1632666039355:#相関係数の信頼区間
+1632666039367:corkekka2 = corr.test(jhk[, kjs], alpha=0.05)
+1632666039388:print(corkekka2, short=FALSE)
+1632669261559:#クラメールの連関係数Vの信頼区間
+1632669261571:#関数effectvの読み込み
+1632669261582:effectv = function(x, y, clevel=0.95){
+1632669261593:library(vcd)
+1632669261605:library(MBESS)
+1632669261617:#クロス集計表の算出
+1632669261627:tmpcross = table(x, y)
+1632669261639:#標本サイズの算出
+1632669261650:n = sum(tmpcross)
+1632669261662:#集計表の行数と列数を算出
+1632669261674:size = dim(tmpcross)
+1632669261686:#自由度を算出
+1632669261699:dof = prod(size-1)
+1632669261710:#カイ2乗値と連関係数の算出
+1632669261721:resas = assocstats(tmpcross)
+1632669261734:chi = resas$chisq_tests["Pearson", "X^2"]
+1632669261745:v = resas$cramer
+1632669261757:#カイ2乗値を所与としたときの非心度の上限値、下限値を算出
+1632669261768:resconf = conf.limits.nc.chisq(Chi.Square=chi, df=dof, conf.level=clevel)
+1632669261784:if(resconf$Lower.Limit>0){  #下限値が0を超える領域に入った場合
+1632669261796:#信頼区間の下限・上限の算出
+1632669261807:ll = sqrt((dof+resconf$Lower.Limit)/(min(size)-1)*n)
+1632669261819:ul = sqrt((dof+resconf$Upper.Limit)/(min(size)-1)*n)
+1632669261830:return(list=c(効果量V=v, カイ2乗値=chi, 信頼水準=clevel, 区間下限=ll, 区間上限=ul))
+1632669261841:}
+1632669261853:else if(resconf$Lower.Limit==0){  #下限値が負値の場合（λ=0に固定される）
+1632669261865:#信頼区間の下限を0に制約したうえで上限を算出
+1632669261876:resconf = conf.limits.nc.chisq(Chi.Square=chi, df=dof, conf.level=NULL,
+1632669261888:alpha.lower=0, alpha.upper=(1-clevel)/2)
+1632669261899:ul = sqrt((dof+resconf$Upper.Limit)/(min(size)-1)*n)
+1632669261912:return(list=list(
+1632669261924:"下限値が負値になったので信頼区間の下限値を0にしました。",
+1632669261935:c(効果量V=v, カイ2乗値=chi, 信頼水準=clevel, 区間下限=0, 区間上限=ul))
+1632669261948:)
+1632669261960:}
+1632669261971:}
+1632669328359:#連関係数の信頼区間
+1632669328371:effectv(jhk$年代, jhk$部署, clevel=0.95)
+1632669453329:#クラメールの連関係数Vの信頼区間
+1632669453342:#関数effectvの読み込み
+1632669453354:effectv = function(x, y, clevel=0.95){
+1632669453366:library(vcd)
+1632669453379:library(MBESS)
+1632669453390:#クロス集計表の算出
+1632669453402:tmpcross = table(x, y)
+1632669453413:#標本サイズの算出
+1632669453425:n = sum(tmpcross)
+1632669453436:#集計表の行数と列数を算出
+1632669453448:size = dim(tmpcross)
+1632669453460:#自由度を算出
+1632669453472:dof = prod(size-1)
+1632669453484:#カイ2乗値と連関係数の算出
+1632669453496:resas = assocstats(tmpcross)
+1632669453507:chi = resas$chisq_tests["Pearson", "X^2"]
+1632669453519:v = resas$cramer
+1632669453530:#カイ2乗値を所与としたときの非心度の上限値、下限値を算出
+1632669453541:resconf = conf.limits.nc.chisq(Chi.Square=chi, df=dof, conf.level=clevel)
+1632669453559:if(resconf$Lower.Limit>0){  #下限値が0を超える領域に入った場合
+1632669453571:#信頼区間の下限・上限の算出
+1632669453583:ll = sqrt((dof+resconf$Lower.Limit)/((min(size)-1)*n))
+1632669453594:ul = sqrt((dof+resconf$Upper.Limit)/((min(size)-1)*n))
+1632669453607:return(list=c(効果量V=v, カイ2乗値=chi, 信頼水準=clevel, 区間下限=ll, 区間上限=ul))
+1632669453619:}
+1632669453630:else if(resconf$Lower.Limit==0){  #下限値が負値の場合（λ=0に固定される）
+1632669453643:#信頼区間の下限を0に制約したうえで上限を算出
+1632669453655:resconf = conf.limits.nc.chisq(Chi.Square=chi, df=dof, conf.level=NULL,
+1632669453667:alpha.lower=0, alpha.upper=(1-clevel)/2)
+1632669453680:ul = sqrt((dof+resconf$Upper.Limit)/((min(size)-1)*n))
+1632669453690:return(list=list(
+1632669453701:"下限値が負値になったので信頼区間の下限値を0にしました。",
+1632669453712:c(効果量V=v, カイ2乗値=chi, 信頼水準=clevel, 区間下限=0, 区間上限=ul))
+1632669453725:)
+1632669453736:}
+1632669453748:}
+1632669453765:#連関係数の信頼区間
+1632669453777:effectv(jhk$年代, jhk$部署, clevel=0.95)
