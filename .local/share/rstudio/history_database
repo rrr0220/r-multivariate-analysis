@@ -483,3 +483,126 @@
 1632669453748:}
 1632669453765:#連関係数の信頼区間
 1632669453777:effectv(jhk$年代, jhk$部署, clevel=0.95)
+1633098738290:#データフレームの構造の表示
+1633098738303:str(jhk)
+1633098821336:#データフレームの構造の表示
+1633098821349:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章/人事評価結果.csv")
+1633098831971:str(jhk)
+1633098887296:#データフレームの構造の表示
+1633098887309:jhk = read.csv("~/R_Multivariate_Analysis0726/第01章/人事評価結果.csv")
+1633098890504:str(jhk)
+1633099022787:#実数型の確認
+1633099022800:#「総合平均」をデータフレームに追加
+1633099022814:jhk$総合平均 = apply(jhk[, 10:11], 1, mean)
+1633099029556:str(jhk)
+1633099286717:#度数分布表
+1633099286730:score = c(1, 5, 2, 10, 8, 2, 1, 4, 3, 3)
+1633099286745:table(score)
+1633099484385:#Factor型への変換と度数分布表
+1633099484396:#関数factorによって変換
+1633099484408:fscore = factor(score, level=seq(0, 10, 1))
+1633099517876:str(fscore)
+1633099574920:#度数分布表
+1633099574933:fscore
+1633099596977:#度数分布表
+1633099596990:table(fscore)
+1633099747324:str(jhk)
+1633100123424:?factor
+1633100252026:table(jhk$部署)
+1633100265618:table(jhk$年代)
+1633100327944:#Factor型への変換と度数分布表
+1633100327956:#関数factorによって変換
+1633100327969:fscore = factor(score, levels=seq(0, 10, 1))
+1633100333199:#構造の把握
+1633100333209:str(fscore)
+1633100386191:jhk$年代 = factor(jhk$年代, levels=c("若手", "中堅", "熟練"))
+1633100393070:str(jhk)
+1633100398875:table(jhk$年代)
+1633101923221:#男性のデータのみ抽出する
+1633101923235:mdat = subset(jhk, 性別=="M")
+1633101936675:head(mdat)
+1633102228947:mdat2 = subset(jhk, 性別!="F")
+1633102237171:head(mdat2)
+1633102313133:#協調性が50点未満の行を抽出する
+1633102313145:cope1 = subset(jhk, 協調性<50)
+1633102322044:head(cope1)
+1633102527563:head(cond)
+1633102529688:#subsetを利用しない場合の条件抽出
+1633102529701:cond = (jhk$性別=="M")&((jhk$年代=="中堅")|(jhk$年代=="熟練"))
+1633102530285:head(cond)
+1633102571089:m4 = jhk[cond,]
+1633102577964:head(m4)
+1633103115719:#欠損値箇所が空白の場合
+1633103115732:kesson = read.csv("~/R_Multivariate_Analysis0726/第02章/欠損データ.csv")
+1633103120882:kesson
+1633103180970:#欠損箇所が数値の場合
+1633103180983:kesson2 = read.csv("~/R_Multivariate_Analysis0726/第02章/欠損データ2.csv")
+1633103194156:kesson2
+1633103277972:#na.stringsで欠損値を指定
+1633103277985:kesson3 = read.csv("~/R_Multivariate_Analysis0726/第02章/欠損データ.csv", na.strings=c(999, 9999))
+1633103287284:kesson3
+1633103368850:#na.omitによる完全データの作成
+1633103368863:kanzen = na.omit(kesson3)
+1633103374083:kanzen
+1633103792650:#NAのない行番号を取得する
+1633103792665:cind = complete.cases(kesson3)
+1633103795538:cind
+1633103821901:kanzen2 = kesson3[cind,]
+1633103826343:kanzen2
+1633104058079:#sortによる1変数のソート
+1633104058092:score = c(1, 5, 2, 10, 8, 2, 1, 4, 3, 3)
+1633104058107:sort(score, descreasing=FALSE)
+1633104086428:sort(score, decreasing=FALSE)
+1633104112629:sort(score, decreasing=TRUE)
+1633104272114:#orderによるソートされた行番号の取得
+1633104272126:sdat = read.csv("~/R_Multivariate_Analysis0726/第02章/ソートデータ.csv)
+1633104280144:#orderによるソートされた行番号の取得
+1633104280155:sdat = read.csv("~/R_Multivariate_Analysis0726/第02章/ソートデータ.csv)
+1633104280167:sdat
+1633104289573:#orderによるソートされた行番号の取得
+1633104289587:sdat = read.csv("~/R_Multivariate_Analysis0726/第02章/ソートデータ.csv")
+1633104293438:sdat
+1633104314233:sdat = read.csv("~/R_Multivariate_Analysis0726/第02章/ソートデータ.csv")
+1633104381488:sdat
+1633104457880:#orderによるソートされた行番号の取得
+1633104457893:sdat = read.csv("~/R_Multivariate_Analysis0726/第02章/ソートデータ.csv")
+1633104506929:#orderによるソートされた行番号の取得
+1633104506939:sdat = read.csv("~/R_Multivariate_Analysis0726/第02章/ソートデータ.csv", fileEncoding = "shift-jis")
+1633104510834:sdat
+1633104518719:str(sdat)
+1633104548611:posi = order(sdat$協調性)
+1633104552967:posi
+1633104638570:sdat[posi,]
+1633104707537:posi2 = order(sdat$協調性, decreasing=TRUE)
+1633104713318:posi2
+1633104723545:sdat[posi2,]
+1633105009639:#複数変数によるデータフレームのソート
+1633105009651:posi3 = order(sdat$協調性, sdat$総合)
+1633105019449:sdat[posi3,]
+1633105149278:#マージ
+1633105149290:datA = read.csv("~/R_Multivariate_Analysis0726/第02章/マージデータA.csv", fileEncoding = "shift-jis")
+1633105165972:datB = read.csv("~/R_Multivariate_Analysis0726/第02章/マージデータB.csv", fileEncoding = "shift-jis")
+1633105174903:datA
+1633105182253:datB
+1633105215778:merge(datA, datB, by="ID")
+1633105241756:merge(datA, datB, by="ID", all=TRUE)
+1633105444181:#置換を行うデータ
+1633105444193:vec = c(2, 3, 4, 5, 1, 2, 3, 1, 2)
+1633105466343:tmat = matrix(vec, ncol=3)
+1633105470427:tmay
+1633105472699:tmat
+1633105508747:tmat2 = matrix(vec, nrow=3)
+1633105513943:tmat2
+1633105589804:?matrix
+1633105664609:tmat3 = matrix(vec, ncol=3, byrow=TRUE)
+1633105666048:tmat3
+1633105870251:#whichによる置換対象要素の座標の取得
+1633105870263:loc2 = which(tmat==2, arr.ind=TRUE)
+1633105870275:loc4 = which(tmat==4, arr.ind=TRUE)
+1633105875786:loc2
+1633105882310:loc4
+1633105926043:#数値の置換
+1633105926056:tmatc = tmat
+1633105963336:tmatc[loc4] = 2
+1633105964156:tmatc[loc2] = 4
+1633105969480:tmatc
