@@ -606,3 +606,256 @@
 1633105963336:tmatc[loc4] = 2
 1633105964156:tmatc[loc2] = 4
 1633105969480:tmatc
+1633263198139:#固定長データのハンドリング
+1633263198149:itemresp = reasLines("~/R_Multivariate_Analysis0726/第02章/項目反応固定長.txt")
+1633263207381:#固定長データのハンドリング
+1633263207392:itemresp = readLines("~/R_Multivariate_Analysis0726/第02章/項目反応固定長.txt")
+1633263216348:itemresp
+1633263747452:spoint = c(1, seq(7, 11, 1))
+1633263747466:epoint = c(6, seq(7, 11, 1))
+1633263752907:spoint
+1633263756463:epoint#変数の作成
+1633263824797:#変数の作成
+1633263824808:raw0 = sapply(itemresp, substring, spoint, epoint)
+1633263828486:raw0
+1633264440022:#行列の整形
+1633264440037:dimnames(raw0)[[2]] = 1:5
+1633264446365:raw0
+1633264483953:raw0 = sapply(itemresp, substring, spoint, epoint)
+1633264483968:raw0
+1633264495809:raw0[[2]]
+1633264500334:raw0[2]
+1633264503752:raw0[]
+1633264507802:raw0[1]
+1633264514326:raw0[2
+1633264514339:]
+1633264519940:raw0[2]
+1633264531162:raw0[[2]
+1633264534229:raw0[[2]]
+1633264543984:raw0[[2]]
+1633264551530:raw0[4]
+1633264561420:raw0[7]
+1633264645088:class(raw0)
+1633264651187:#変数の作成
+1633264651200:raw0 = sapply(itemresp, substring, spoint, epoint)
+1633264651740:raw0
+1633264652527:class(raw0)
+1633264759279:raw0[2,]
+1633264774972:raw0[,2]
+1633264791926:#行列の整形
+1633264791939:dimnames(raw0)[[2]] = 1:5
+1633264795652:raw0
+1633264802413:raw0[2,]
+1633264803913:raw0[,2]
+1633264982236:dimnames(raw0)[[2]] = 1:5
+1633265016991:#行列の整形
+1633265017005:dimnames(raw0)[[1]] = 1:5
+1633265024596:#行列の整形
+1633265024609:dimnames(raw0)[[3]] = 1:5
+1633265034405:#行列の整形
+1633265034419:dimnames(raw0)[[1]] = 1:5
+1633265040681:#行列の整形
+1633265040692:dimnames(raw0)[[1]] = 1:6
+1633265046669:raw0
+1633265057063:#変数の作成
+1633265057076:raw0 = sapply(itemresp, substring, spoint, epoint)
+1633265058512:raw0
+1633265079597:dimnames(raw0)[[2]] = 1:5
+1633265192204:#変数の作成
+1633265192218:raw0 = sapply(itemresp, substring, spoint, epoint)
+1633265192976:raw0
+1633265202068:class(raw0)
+1633265219147:#行列の整形
+1633265219161:dimnames(raw0)[[1]] = 1:6
+1633265219675:dimnames(raw0)[[2]] = 1:5
+1633265274945:raw0
+1633265319714:#変数の作成
+1633265319726:raw0 = sapply(itemresp, substring, spoint, epoint)
+1633265322792:raw0
+1633265408262:dimnames(raw0) = list(seq(1, 6, 1), NULL)
+1633265411862:raw0
+1633265432798:dimnames(raw0) = list(NULL, seq(1, 5, 1))
+1633265436937:raw0
+1633265450485:dimnames(raw0) = list(NULL, seq(1, 6, 1))
+1633265454402:dimnames(raw0) = list(NULL, seq(1, 5, 1))
+1633265523780:?seq
+1633265671384:dimnames(raw0) = NULL
+1633265672396:raw0
+1633265839924:rownames(raw0) = seq(1, 6, 1)
+1633265843669:raw0
+1633265846620:colnames(raw0) = seq(1, 5, 1)
+1633265848438:raw0
+1633265852983:dimnames(raw0) = NULL
+1633265855077:raw0
+1633265863257:dimnames(raw0)[[2]] = 1:5
+1633265865687:raw0
+1633265904434:raw1 = t(raw0)
+1633265910002:raw1
+1633266257003:colnames(raw1) = c("ID", paste("問", 1:5, sep=""))
+1633266262129:raw1
+1633266395024:colnames(raw1) = c("ID", paste("問", 1:5, sep=" "))
+1633266396464:raw1
+1633266502226:colnames(raw1) = c("ID", paste("問", 1:5, sep="/"))
+1633266502700:raw1
+1633266507222:colnames(raw1) = c("ID", paste("問", 1:5, sep=""))
+1633266507626:raw1
+1633266607057:?paste
+1633266782979:colnames(raw1) = c("ID", paste("問", collapse=1:5, sep=""))
+1633266860092:colnames(raw1) = c("ID", paste("問", 1:5, sep=""))
+1633266860886:raw1
+1633267223557:#正誤データへの変換
+1633267223570:key = read.csv("~/R_Multivariate_Analysis0726/第02章/key.txt")
+1633267229391:key
+1633267245704:#正誤データへの変換
+1633267245718:key = read.csv("~/R_Multivariate_Analysis0726/第02章/key.txt", encoding=UFT8)
+1633267277744:#正誤データへの変換
+1633267277756:key = read.csv("~/R_Multivariate_Analysis0726/第02章/key.txt", fileEncoding = "shift-jis")
+1633267278496:key
+1633267296003:key[1,]
+1633267301425:key[, 1]
+1633268114765:#正答を1、誤答を0に変換
+1633268114778:bimat = sweep(raw1[, -1], 2, key[, 1], FUN="==") * 1
+1633268119265:bimat
+1633269120216:#フォルダ内のファイルの確認
+1633269120228:fname = dir()
+1633269125279:fname
+1633269154653:#フォルダ内のファイルの確認
+1633269154665:fname = dir("~/R_Multivariate_Analysis0726/第02章/POSフォルダ")
+1633269156431:fname
+1633269267412:#ID-POSデータの一例
+1633269267423:pos0 = read.csv("~/R_Multivariate_Analysis0726/第02章/201301.csv")
+1633269280319:#ID-POSデータの一例
+1633269280331:pos0 = read.csv("~/R_Multivariate_Analysis0726/第02章/POSフォルダ/201301.csv")
+1633269292390:#ID-POSデータの一例
+1633269292403:pos0 = read.csv("~/R_Multivariate_Analysis0726/第02章/POSフォルダ/201301.csv", fileEncoding = "shift-jis")
+1633269307061:head(pos0, 3)
+1633269350295:pos0
+1633269387421:str(pos0)
+1633269665189:#複数のデータを一度に読み込む
+1633269665199:tmp = lapply(fname, read.csv, stringsAsFactors=FALSE)
+1633270107555:fname
+1633270199116:fname2 = paste("~/R_Multivariate_Analysis0726/第02章/POSフォルダ", fname, sep="/")
+1633270204482:fname2
+1633270222909:#複数のデータを一度に読み込む
+1633270222922:# tmp = lapply(fname, read.csv, stringsAsFactors=FALSE)
+1633270222936:tmp = lapply(fname2, function(i){read.csv(i, fileEncoding = "shift-jis")}, stringsAsFactors=FALSE)
+1633270247559:#複数のデータを一度に読み込む
+1633270247572:# tmp = lapply(fname, read.csv, stringsAsFactors=FALSE)
+1633270247586:tmp = lapply(fname2, function(i){read.csv(i, fileEncoding = "shift-jis")})
+1633270257303:tmp
+1633270322410:tmp[[1]]
+1633270337740:head(pos0, 3)
+1633270340083:tmp[[1]]
+1633270359817:tmp[[2]]
+1633270406591:str(tmp[[1]])
+1633270414064:str(tmp[[2]])
+1633270895735:#複数のデータフレームを縦に繋げる
+1633270895748:posall = do.call(rbind, tmp)
+1633270900988:posall
+1633270914510:str(posall)
+1633270989594:?do.call
+1633271266476:#Factor型への変換
+1633271266489:locv = c("顧客ID", "店舗", "商品カテゴリ")
+1633271286053:poscall[, locv]
+1633271290697:posall[, locv]
+1633271326642:posall[, locv] = lapply(posall[, locv], as.factor)
+1633271334946:str(posall)
+1633271389914:table(posall$商品カテゴリ)
+1633271592652:posall$商品カテゴリ = factor(posall$商品カテゴリ, levels=paste("C", 1:30, sep=""))
+1633271595104:table(posall$商品カテゴリ)
+1633271750000:str(posall)
+1633271777608:posall$商品カテゴリ = factor(商品カテゴリ, levels=paste("C", 1:30, sep=""))
+1633271781603:posall$
+1633271785270:posall$商品カテゴリ = factor(posall$商品カテゴリ, levels=paste("C", 1:30, sep=""))
+1633271786195:table(posall$商品カテゴリ)
+1633271791075:str(posall)
+1633271796643:str(posall)
+1633271813690:#複数のデータフレームを縦に繋げる
+1633271813704:posall = do.call(rbind, tmp)
+1633271815557:str(posall)
+1633271818999:#Factor型への変換
+1633271819011:locv = c("顧客ID", "店舗", "商品カテゴリ")
+1633271819977:posall[, locv] = lapply(posall[, locv], as.factor)
+1633271822479:str(posall)
+1633271825894:posall$商品カテゴリ = factor(posall$商品カテゴリ, levels=paste("C", 1:30, sep=""))
+1633271828960:table(posall$商品カテゴリ)
+1633271837056:str(posall)
+1633272027826:#「顧客ID」によるソート
+1633272027838:tmploc = order(posall$顧客ID, posall$購買日, posall$購買時間)
+1633272067762:pos = posall[tmploc,]
+1633272073873:head(pos)
+1633272777655:# RFM分析
+1633272777670:# 顧客IDごとに最新購買日を求める
+1633272777682:R = tapply(posall$顧客ID, posall$顧客ID, max)
+1633272796353:# RFM分析
+1633272796366:# 顧客IDごとに最新購買日を求める
+1633272796379:R = tapply(posall$購買日, posall$顧客ID, max)
+1633272803327:R
+1633272878854:# 顧客IDごとに総購買回数を求める
+1633272878869:F = tapply(posall$顧客ID, posall$顧客ID, length)
+1633272882774:F
+1633272917732:# 顧客IDごとに総購買金額を求める
+1633272917745:M = tapply(posall$購買金額, posall$顧客ID, sum)
+1633272924988:M
+1633272977626:# R、F、Mをデータフレームとして統合
+1633272977640:rfm = data.frame(R=R, F=F, M=M)
+1633273097939:# 優先順位をM＞F＞Rとして降順にソート
+1633273097953:tmploc2 = order(rfm$M, rfm$F, rfm$R, decreasing=TRUE)
+1633273140520:rfm2 = rfm[tmploc2,]
+1633273146628:rfm2
+1633273157517:rfm
+1633273163637:rfm2
+1633273196062:rfm2[1:7, ]
+1633273198863:rfm2[1:7,]
+1633273425827:# 全体
+1633273425841:t1 = table(posall$顧客ID, posall$商品カテゴリ)
+1633273428652:t1
+1633273529352:# 店舗別
+1633273529363:t2 = xtabs(~顧客ID+商品カテゴリ+店舗, data=posall)
+1633273537505:t2
+1633273582630:# 購買日別
+1633273582641:t3 = xtabs(~顧客ID+商品カテゴリ+購買日, data=posall)
+1633273586177:t3
+1633273789838:# データ全体のクロス集計表の行数と列数を求める
+1633273789852:dim(table(posall[, c("顧客ID", "商品カテゴリ")]))
+1633273858182:# 店舗Aにおけるクロス集計表の行数と列数を求める
+1633273858196:storeA = subset(posall, 店舗=="A")
+1633273859859:dim(table(storeA[, c("顧客ID", "商品カテゴリ")]))
+1633274284100:# 顧客ID別に月ごとの総購買金額を算出
+1633274284113:cid = posall$顧客ID
+1633274285760:buym = substr(posall$購買日, 1, 6)
+1633274436088:# resmat = tapply(vector, index, function)
+1633274436102:resmat = tapply(posall$購買金額, list(cid, buym), sum)
+1633274518832:# 該当データが存在せず、NAとなっている部分に0を代入する
+1633274518846:resmat[is.na(resmat)] = 0
+1633274525724:head(resmat)
+1633274956242:# ベクトルxに対して、その要素が1以上の場合に、その要素名を返す
+1633274956256:res2 = apply(t1, 1, funxtion(x){names(which(x >= 1))})
+1633274991667:# ベクトルxに対して、その要素が1以上の場合に、その要素名を返す
+1633274991679:res2 = apply(t1, 1, funxtion(x){return(names(which(x >= 1)))})
+1633275013608:# ベクトルxに対して、その要素が1以上の場合に、その要素名を返す
+1633275013622:res2 = apply(t1, 1, function(x){names(which(x >= 1))})
+1633275033856:head(res2)
+1633275065447:t1
+1633275789641:?sweep
+1633276207902:# 来店日をdate形式に変換
+1633276207915:# 関数as.Dateの引数として使えるように、来店日を文字列に変換
+1633276207928:tmpdate = paste(substr(posall$購買日, 1, 4), "-",
+1633276207943:substr(posall$購買日, 5, 6), "-",
+1633276207956:substr(posall$購買日, 7, 8), sep="")
+1633276223369:tmpdate[1:5]
+1633276253172:ndate = as.Date(tmpdate)
+1633276331372:restime = tapply(ndate, posall$顧客ID, diff)
+1633276347652:head(restime)
+1633276373754:restime
+1633276381921:ndate
+1633276413173:posall$顧客ID
+1633276615933:lapply(restime2[1:6], hist, breaks=10, xlab="diff", main="")
+1633276625453:# 顧客ID別に来店間隔の分布を描写
+1633276625466:restime2 = lapply(restime, as.numeric)
+1633276626398:par(mfrow=c(2, 3))
+1633276629336:lapply(restime2[1:6], hist, breaks=10, xlab="diff", main="")
+1633276880613:# 顧客ID別に来店間隔の分布を要約
+1633276880625:resd = lapply(restime2, describe)
+1633276887473:resd[1:2]
+1633276904339:resd[1:5]
