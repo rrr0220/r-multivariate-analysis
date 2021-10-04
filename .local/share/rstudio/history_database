@@ -859,3 +859,44 @@
 1633276880625:resd = lapply(restime2, describe)
 1633276887473:resd[1:2]
 1633276904339:resd[1:5]
+1633352666043:shp = read.csv("~/R_Multivariate_Analysis0726/第06章/失敗.csv")
+1633352710443:shp = read.csv("~/R_Multivariate_Analysis0726/第06章/失敗.csv", fileEncoding = "shift-jis")
+1633352718722:head(shp)
+1633352909935:# モデルの記述
+1633352909947:shp.model = '
+1633352909961:失敗不安~叱責
+1633352909972:学習意欲~励まし
+1633352909985:学業成績~失敗不安+学習意欲
+1633352909997:'
+1633352988505:# 母数の推定
+1633352988518:library(lavaan)
+1633353048468:shp.fit = sem(shp.model, data=shp)
+1633353129102:# パス解析の結果の出力
+1633353129114:summary(shp.fit, standardized=TRUE, rsquare=TRUE)
+1633353505141:# 信頼区間の出力
+1633353505152:summary(shp.fit, standardized=TRUE, rsquare=TRUE, ci=TRUE)
+1633353658157:# 適合度指標の出力
+1633353658170:summary(shp.fit, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1633353934232:# 全ての適合度指標の出力
+1633353934244:fitmeasures(shp.fit)
+1633354215106:# 修正指標の出力
+1633354215119:modindice(shp.fit)
+1633354232849:# 修正指標の出力
+1633354232861:modindices(shp.fit)
+1633354753096:# 誤差変数の間に相関を仮定したモデルの記述
+1633354753107:shp.model2 = '
+1633354753118:失敗不安~叱責
+1633354753128:学習意欲~励まし
+1633354753139:学業成績~失敗不安+学習意欲
+1633354753150:失敗不安~~学習意欲
+1633354753160:'
+1633354915373:# 誤差変数の間に相関を仮定したモデルでの母数推定
+1633354915386:shp.fit2 = sem(shp.model2, data=shp)
+1633354953952:summary(shp.fit2, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1633357334595:# 標本共分散行列の算出
+1633357334605:shp.cov = cov(shp)
+1633357338368:shp.cov
+1633357478488:# 標本共分散行列をもとにした母数の推定
+1633357478500:shp.cov.fit = sem(shp.model2, sample.cov=shp.cov, sample.nobs=500)
+1633357533862:summary(shp.cov.fit, standerdized=TRUE, rsquare=TRUE, ci=TRUE, fit.measure=TRUE)
+1633357539904:summary(shp.cov.fit, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measure=TRUE)
