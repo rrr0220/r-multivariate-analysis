@@ -900,3 +900,120 @@
 1633357478500:shp.cov.fit = sem(shp.model2, sample.cov=shp.cov, sample.nobs=500)
 1633357533862:summary(shp.cov.fit, standerdized=TRUE, rsquare=TRUE, ci=TRUE, fit.measure=TRUE)
 1633357539904:summary(shp.cov.fit, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measure=TRUE)
+1633427129925:source("~/.active-rstudio-document")
+1633427657479:# 3重クロス集計表
+1633427657492:b3dat = read.csv("~/R_Multivariate_Analysis0726/第13章/自転車データ3.csv", row.names=1, fileEncoding = "shift-jis")
+1633427665955:head(b3dat)
+1633427692122:str(b3dat)
+1633428115056:# 3重クロス集計表の作成
+1633428115069:xtabs(~メーカー+ブランド力+技術力, data=b3dat)
+1633429275140:b2dat = read.csv("~/R_Multivariate_Analysis0726/第13章/自転車データ3.csv", row.names=1, fileEncoding = "shift-jis")
+1633429285468:b2dat
+1633429309036:head(b2dat)
+1633429316724:str(b2dat)
+1633429383088:# コレスポンデンス分析の実行
+1633429383101:library(FactoMineR)
+1633429522152:# コレスポンデンス分析の実行
+1633429522166:library(FactoMineR)
+1633429553907:resb2dat = CA(b2dat)
+1633429579011:head(b2dat)
+1633429580892:str(b2dat)
+1633430069290:resb2dat
+1633430072069:resb2dat = CA(b2dat)
+1633430106924:b2dat = read.csv("~/R_Multivariate_Analysis0726/第13章/自転車データ2.csv", row.names=1, fileEncoding = "shift-jis")
+1633430108308:head(b2dat)
+1633430109634:str(b2dat)
+1633430112761:# コレスポンデンス分析の実行
+1633430112774:library(FactoMineR)
+1633430114484:resb2dat = CA(b2dat)
+1633430264382:# 固有値の出力
+1633430264397:resb2dat$eig
+1633434127349:# 行スコアと列スコアの出力
+1633434127363:resb2dat$row
+1633434143233:# 行スコアと列スコアの出力
+1633434143246:resb2dat$row$coord
+1633434156236:resb2dat$colmuns$coord
+1633434164120:resb2dat$col$coord
+1633434206661:summary(res2dat)
+1633434212722:summary(resb2dat)
+1633437452935:# メーカーのクラスター分析
+1633437452948:z = scale(b2dat)
+1633437461552:z
+1633437483946:b2dat
+1633437637041:# 平方ユークリッド距離
+1633437637054:D0 = dist(z, method="euclidean")
+1633437678509:D = (1/2) * D0 ** 2
+1633437754007:D0
+1633437758633:D
+1633437944254:# 階層的クラスター分析
+1633437944267:resclust = hclust(D, method="ward.D")
+1633437957305:plot(resclust)
+1633438035246:# クラスターの解釈
+1633438035258:# クラスター番号の取得
+1633438035272:clus = cutree(resclust, k=2)
+1633438041377:clus
+1633438051783:clus
+1633438119938:b2dat$cluster = clus
+1633438220324:by(b2dat[, -6], b2dat$cluster, apply, 2, mean)
+1633438277465:?by
+1633438416821:b2dat
+1633438421399:b2dat[, -6]
+1633438472736:# クラスター別の平均値の算出
+1633438472747:by(b2dat[, -6], b2dat$cluster, apply, 2, mean)
+1633438795963:plot(resclust)
+1633438812059:resb2dat = CA(b2dat)
+1633440060784:resb2da
+1633440067354:resb2dat
+1633440236257:# 行スコアと列スコアの出力
+1633440236270:resb2dat$row$coord
+1633440237020:resb2dat$col$coord
+1633441030936:# クラスター別の平均値の算出
+1633441030947:by(b2dat[, -6], b2dat$cluster, apply, 2, mean)
+1633441611007:# 多重コレスポンデンス分析
+1633441611020:# データ行列の変換
+1633441611032:library(dummies)
+1633441633272:# 多重コレスポンデンス分析
+1633441633285:# データ行列の変換
+1633441633298:library(dummies)
+1633441711146:db3dat = dummy.data.frame(b3dat, sep=":")
+1633441734127:head(d3dat)
+1633441747800:head(db3dat)
+1633441786850:b3dat
+1633441915237:# 関数CAによる（多重）コレスポンデンス分析の実行
+1633441915249:resdb3dat = CA(db3dat)
+1633441929267:resdb3dat$eig
+1633442346966:# 列カテゴリのみをプロット
+1633442346976:plot(resdb3dat, invisible="row")
+1633442403358:plot(resdb3dat, invisible="col")
+1633442408104:# 列カテゴリのみをプロット
+1633442408116:plot(resdb3dat, invisible="row")
+1633442540856:# 関数MCAによる多重コレスポンデンス分析の実行
+1633442540868:resb3dat = MCA(b3dat)
+1633442815781:# 多重クロス集計表の作成
+1633442815795:crosb3dat = xtabs(~メーカー+ブランド力+コスパ+技術力+レース実績+デザイン, data=b3dat)
+1633442827940:crosb3dat
+1633442893633:# データフレームへの変換
+1633442893646:crosdf = as.data.frame(crosb3dat)
+1633442901585:head(crosdf)
+1633442946721:crosdf
+1633442987459:nrow(crosdf)
+1633443101743:# 度数が0のセルを除外
+1633443101755:crosdf2 = crosdf[which(crosdf[, 7]>=1),]
+1633443111404:nrow(crosdf2)
+1633443152162:head(crosdf2)
+1633443361373:# 関数MCAによる多重コレスポンデンス分析の実行(2)
+1633443361384:rescrosdf2 = MCA(crosdf2, quanti.sup=7, row.w=crosdf$Freq)
+1633443380354:# 関数MCAによる多重コレスポンデンス分析の実行(2)
+1633443380367:rescrosdf2 = MCA(crosdf2, quanti.sup=7, row.w=crosdf2$Freq)
+1633443439058:# 関数MCAによる多重コレスポンデンス分析の実行(2)
+1633443439071:rescrosdf2 = FactoMineR:MCA(crosdf2, quanti.sup=7, row.w=crosdf2$Freq)
+1633443486726:# 関数MCAによる多重コレスポンデンス分析の実行(2)
+1633443486736:rescrosdf2 = FactoMineR::MCA(crosdf2, quanti.sup=7, row.w=crosdf2$Freq)
+1633443504140:# 関数MCAによる多重コレスポンデンス分析の実行
+1633443504152:resb3dat = FactoMineR::MCA(b3dat)
+1633443510948:# 関数MCAによる多重コレスポンデンス分析の実行(2)
+1633443510960:rescrosdf2 = FactoMineR::MCA(crosdf2, quanti.sup=7, row.w=crosdf2$Freq)
+1633444940681:# 関数CAによる（多重）コレスポンデンス分析の実行
+1633444940693:resdb3dat = CA(db3dat)
+1633444946224:# 列カテゴリのみをプロット
+1633444946237:plot(resdb3dat, invisible="row")

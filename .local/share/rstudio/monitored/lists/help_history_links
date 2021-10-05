@@ -10,3 +10,4 @@ help/library/base/html/paste.html,R: Concatenate Strings
 help/library/base/html/NA.html,R: 'Not Available' / Missing Values
 help/library/base/html/do.call.html,R: Execute a Function Call
 help/library/base/html/sweep.html,R: Sweep out Array Summaries
+help/library/base/html/by.html,R: Apply a Function to a Data Frame Split by Factors
