@@ -1,6 +1,0 @@
-[1,"Installing 'dummies' ...\n"]
-[2,"Installing package into ‘/usr/local/lib/R/site-library’\n(as ‘lib’ is unspecified)\n"]
-[2,"trying URL 'https://packagemanager.rstudio.com/all/__linux__/focal/latest/src/contrib/dummies_1.5.6.tar.gz'\n"]
-[2,"Content type 'binary/octet-stream' length 26529 bytes (25 KB)\n="]
-[2,"=================================================\ndownloaded 25 KB\n\n"]
-[2,"* installing *binary* package ‘dummies’ ...\n* DONE (dummies)\n\nThe downloaded source packages are in\n\t‘/tmp/Rtmpqpboxs/downloaded_packages’\n\n\n✔ Package 'dummies' successfully installed.\n"]
