@@ -4,6 +4,7 @@
 
 shp = read.csv("~/R_Multivariate_Analysis0726/第06章/失敗.csv", fileEncoding = "shift-jis")
 head(shp)
+str(shp)
 
 # モデルの記述
 shp.model = '
@@ -46,6 +47,10 @@ shp.model2 = '
 shp.fit2 = sem(shp.model2, data=shp)
 summary(shp.fit2, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
 
+# 描画
+# install.packages("semPlot")
+# library(semPlot)
+# semPaths(shp.fit, whatLabels="std", layout="tree")
 
 # session6-5 --------------------------------------------------------------
 

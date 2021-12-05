@@ -1,0 +1,68 @@
+---
+title: "重回帰分析"
+author: "RRR"
+date: "2021/11/4"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## データの概要
+
+### 「顧客満足度データ.csv」に含まれる変数
+
+-   「店舗番号」：各店舗にランダムに付与されたID
+-   「顧客数」：各店舗の顧客数
+-   「立地満足度」：立地に関する顧客満足度の平均
+-   「設備満足度」：設備に関する顧客満足度の平均
+-   「店舗面積満足度」：店舗面積に関する顧客満足度の平均
+-   「トレーナー満足度」：トレーナーに関する満足度の平均 
+-   「トレーナー数」：各店舗のトレーナー数
+-   「接客研修」：１＝研修あり、０＝なし
+-   「入会特典」：１＝特典あり、０＝なし
+
+
+## 分析の目的と概要
+
+### 単回帰モデル
+
+$$
+顧客数 = \alpha + \beta × 立地満足度 + 誤差 
+$$
+
+### 重回帰モデル
+
+$$
+顧客数 = \alpha + \beta_1 × 立地満足度 + \beta_2 × 設備満足度 + 誤差 
+$$
+
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+-   Bullet 1
+-   Bullet 2
+-   Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```

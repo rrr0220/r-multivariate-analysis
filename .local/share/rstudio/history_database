@@ -1060,3 +1060,456 @@
 1633717811149:# BICの算出
 1633717811160:extractAIC(res1, k=log(30))
 1633717812174:extractAIC(res3, k=log(30))
+1635563683478:csdat = read.csv("~/R_Multivariate_Analysis0726/第03章/顧客満足度データ.csv", fileEncoding = "shift-jis")
+1635563685274:csdat = read.csv("~/R_Multivariate_Analysis0726/第03章/顧客満足度データ.csv", fileEncoding = "shift-jis")
+1635563688581:head(csdat)
+1635563690833:str(csdat)
+1635563698507:# 重回帰分析の実行
+1635563698521:res1 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度, data=csdat)
+1635563701332:summary(res1)
+1635563707597:# 多重共線性のチェック
+1635563707610:cor(csdat$トレーナー満足度, csdat$トレーナー数)
+1635563724333:# 説明変数間の相関が高い場合の重回帰分析の出力
+1635563724347:# 単回帰分析
+1635563724360:resm1 = lm(顧客数~トレーナー満足度, data=csdat)
+1635563730665:summary(resm1)
+1635563734817:# 重回帰分析
+1635563734830:resm2 = lm(顧客数~トレーナー満足度+トレーナー数, data=csdat)
+1635563736305:summary(resm2)
+1635563742217:# VIFの算出例
+1635563742229:library(car)
+1635563746068:vif(resm2)
+1635563749846:# 顧客満足度の4変数に関するVIFの算出
+1635563749858:vif(res1)
+1635563754870:# 切片と偏回帰係数の信頼区間の算出
+1635563754883:confint(res1, level=0.95)
+1635565277686:knitr::opts_chunk$set(echo = TRUE)
+1635565277932:summary(cars)
+1635565290646:plot(pressure)
+1635568249645:knitr::opts_chunk$set(echo = FALSE)
+1635568249800:summary(cars)
+1635568253830:knitr::opts_chunk$set(echo = FALSE)
+1635568264288:summary(cars)
+1635570762378:?knitr::opts_chunk
+1635570913979:?knitr::opts_chunk$set()
+1635570916660:?knitr::opts_chunk$set()
+1635572391193:pi
+1635575929790:knitr::opts_chunk$set(echo = TRUE)
+1635575929915:summary(cars)
+1635575930160:str(cars)
+1635575963873:summary(cars)　
+1635575964132:str(cars)
+1635575975673:summary(cars)
+1635575975894:str(cars)
+1635576062147:summary(cars)
+1635674346800:library(rvest)
+1635674459361:kabu_url = "https://kabutan.jp/stock/kabuka?code=0000"
+1635674494239:url_res = read_html(kabu_url)
+1635674509061:url_res
+1635674749699:url_title = html_nodes(url_re, css = "html > head > title")
+1635674755971:url_title = html_nodes(url_res, css = "html > head > title")
+1635674761513:url_title
+1635674782282:url_title = html_nodes(url_res, css="html>head>title")
+1635674783408:url_title
+1635674795074:url_title = html_nodes(url_res, css="/html/head/title")
+1635674806528:url_title = html_nodes(url_res, xpath="/html/head/title")
+1635674808163:url_title
+1635674876310:title = html_text(url_title)
+1635674882836:title
+1635675014711:title2 = read_html(kabu_url) %>%
+1635675014724:html_nodes(css="html > head > title") %>%
+1635675014736:html_text()
+1635675023122:title2
+1635675032507:title2 = read_html(kabu_url) %>%
+1635675032520:html_nodes(css="html>head>title") %>%
+1635675032531:html_text()
+1635675033523:title2
+1635675047287:title2 = read_html(kabu_url) %>%
+1635675047298:html_nodes(xpath="/html/head/title") %>%
+1635675047311:html_text()
+1635675048194:title2
+1635675731354:kabuka = read_html(kabu_url) %>%
+1635675731369:html_node(xpath="//*[@id='stock_kabuka_table']/table[2]") %>%
+1635675731381:html_table()
+1635675743129:head(kabuka, 10)
+1635675970290:rm(list=ls())
+1635675973929:gc();  gc();
+1635675994718:library(rvest)
+1635676153779:# URLを変数にしておく
+1635676153792:kabu_url = "https://kabutan.jp/stock/kabuka?code=0000"
+1635676157021:# スクレイピングしたいURLを読み込む
+1635676157034:url_res = read_html(kabu_url)
+1635676159759:url_res
+1635676165328:# URLの読み込み結果から、title要素を抽出
+1635676165340:url_title = html_nodes(url_res, xpath="/html/head/title")
+1635676167456:url_title
+1635676528877:# パイプ演算子(Ctrl+Shift+M)を使う場合
+1635676528893:title2 = read_html(kabu_url) %>%
+1635676528906:html_nodes(xpath="/html/head/title") %>%
+1635676528919:html_text()
+1635676532507:title2
+1635676536182:# 抽出した要素を文字列へ変換
+1635676536195:title = html_text(url_title)
+1635676537138:title
+1635676542088:# 表形式のデータを取得
+1635676542101:kabuka = read_html(kabu_url) %>%
+1635676542114:html_node(xpath="//*[@id='stock_kabuka_table']/table[2]") %>%
+1635676542127:html_table()
+1635676543142:head(kabuka, 10)
+1635676687421:?paste0
+1635687292755:# 複数のページから取得
+1635687292768:# for文の中で要素を付け加えておくオブジェクトはfor文の外にあらかじめ空のオブジェクトの用意が必要となる
+1635687292781:urls = NULL
+1635687298236:for
+1635687301046:a
+1635687320736:kabukas = list()
+1635687995407:# 1ページ取得したら1秒停止
+1635687995419:Sys.sleep(1)
+1635688002868:# 複数のページから取得
+1635688002881:# for文の中で要素を付け加えておくオブジェクトはfor文の外にあらかじめ空のオブジェクトの用意が必要となる
+1635688002894:urls = NULL
+1635688002907:kabukas = list()
+1635688002925:base_urls = "https://kabutan.jp/stock/kabuka?code=0000&ashi=day&page="
+1635688002945:# 1~5に対して同じ処理を繰り返す
+1635688002957:for (i in 1:5){
+1635688002970:pgnum = as.character(i)
+1635688002982:url[i] = paste0(base_url, pgnum)
+1635688003004:kabukas[[i]] = read_html(urls[i]) %>%
+1635688003015:html_node(xpath = "//*[@id='stock_kabuka_table']/table[2]") %>%
+1635688003031:html_table() %>%
+1635688003042:dplyr::mutate_at("前日比", as.character)
+1635688003061:# 1ページ取得したら1秒停止
+1635688003073:Sys.sleep(1)
+1635688003084:}
+1635688027576:# 複数のページから取得
+1635688027585:# for文の中で要素を付け加えておくオブジェクトはfor文の外にあらかじめ空のオブジェクトの用意が必要となる
+1635688027598:urls = NULL
+1635688027607:kabukas = list()
+1635688027621:base_url = "https://kabutan.jp/stock/kabuka?code=0000&ashi=day&page="
+1635688027635:# 1~5に対して同じ処理を繰り返す
+1635688027645:for (i in 1:5){
+1635688027656:pgnum = as.character(i)
+1635688027665:url[i] = paste0(base_url, pgnum)
+1635688027682:kabukas[[i]] = read_html(urls[i]) %>%
+1635688027693:html_node(xpath = "//*[@id='stock_kabuka_table']/table[2]") %>%
+1635688027702:html_table() %>%
+1635688027712:dplyr::mutate_at("前日比", as.character)
+1635688027726:# 1ページ取得したら1秒停止
+1635688027735:Sys.sleep(1)
+1635688027746:}
+1635688081875:# 複数のページから取得
+1635688081888:# for文の中で要素を付け加えておくオブジェクトはfor文の外にあらかじめ空のオブジェクトの用意が必要となる
+1635688081901:urls = NULL
+1635688081917:kabukas = list()
+1635688081935:base_url = "https://kabutan.jp/stock/kabuka?code=0000&ashi=day&page="
+1635688081953:# 1~5に対して同じ処理を繰り返す
+1635688081965:for (i in 1:5){
+1635688081977:pgnum = as.character(i)
+1635688081992:urls[i] = paste0(base_url, pgnum)
+1635688082009:kabukas[[i]] = read_html(urls[i]) %>%
+1635688082023:html_node(xpath = "//*[@id='stock_kabuka_table']/table[2]") %>%
+1635688082034:html_table() %>%
+1635688082045:dplyr::mutate_at("前日比", as.character)
+1635688082063:# 1ページ取得したら1秒停止
+1635688082076:Sys.sleep(1)
+1635688082088:}
+1635688102694:urls
+1635688121232:kabukas
+1635688446439:dat = dplyr::bind_rows(kabukas)
+1635688452542:dat
+1635688508246:str(dat)
+1635689689787:install.packages("RSelenium")
+1635689765238:wdman::selenium(retcommand=TRUE)
+1635691561021:wdman::selenium(retcommand=TRUE)
+1635866002545:wdman::selenium(retcommand=TRUE)
+1635866290019:library(RSelenium)
+1635866291345:wdman::selenium(retcommand=TRUE)
+1638365008490:shp = read.csv("~/R_Multivariate_Analysis0726/第06章/失敗.csv", fileEncoding = "shift-jis")
+1638365010043:head(shp)
+1638365018693:str(shp)
+1638369828266:# モデルの記述
+1638369828279:shp.model = '
+1638369828293:失敗不安~叱責
+1638369828305:学習意欲~励まし
+1638369828320:学業成績~失敗不安+学習意欲
+1638369828332:'
+1638370656835:# 母数の推定
+1638370656845:library(lavaan)
+1638370656980:shp.fit = sem(shp.model, data=shp)
+1638370887577:# パス解析の結果の出力
+1638370887589:summary(shp.fit, standardized=TRUE, rsquare=TRUE)
+1638371817635:# 信頼区間の出力
+1638371817645:summary(shp.fit, standardized=TRUE, rsquare=TRUE, ci=TRUE)
+1638371895948:# 適合度指標の出力
+1638371895961:summary(shp.fit, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1638372034243:# 全ての適合度指標の出力
+1638372034253:fitmeasures(shp.fit)
+1638372169793:# 修正指標の出力
+1638372169806:modindices(shp.fit)
+1638372391787:# 誤差変数の間に相関を仮定したモデルでの母数推定
+1638372391802:shp.fit2 = sem(shp.model2, data=shp)
+1638372392827:summary(shp.fit2, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1638372399119:shp.model2 = '
+1638372399133:失敗不安~叱責
+1638372399144:学習意欲~励まし
+1638372399156:学業成績~失敗不安+学習意欲
+1638372399168:失敗不安~~学習意欲
+1638372402189:# 誤差変数の間に相関を仮定したモデルでの母数推定
+1638372402202:shp.fit2 = sem(shp.model2, data=shp)
+1638372403529:summary(shp.fit2, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1638372423455:# 誤差変数の間に相関を仮定したモデルでの母数推定
+1638372423469:shp.fit2 = sem(shp.model2, data=shp)
+1638372458578:# 誤差変数の間に相関を仮定したモデルの記述
+1638372458591:shp.model2 = '
+1638372458605:失敗不安~叱責
+1638372458618:学習意欲~励まし
+1638372458634:学業成績~失敗不安+学習意欲
+1638372458647:失敗不安~~学習意欲
+1638372458661:'
+1638372464561:# 誤差変数の間に相関を仮定したモデルでの母数推定
+1638372464575:shp.fit2 = sem(shp.model2, data=shp)
+1638372467961:summary(shp.fit2, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1638372484711:shp.fit2 = sem(shp.model2, data=shp)
+1638372562937:shp.model2 = '
+1638372562949:失敗不安~叱責
+1638372562962:学習意欲~励まし
+1638372562974:学業成績~失敗不安+学習意欲
+1638372562987:失敗不安~~学習意欲
+1638372563004:'
+1638372584385:# 誤差変数の間に相関を仮定したモデルの記述
+1638372584398:shp.model2 = '
+1638372584412:失敗不安~叱責
+1638372584426:学習意欲~励まし
+1638372584439:学業成績~失敗不安+学習意欲
+1638372584452:失敗不安~~学習意欲
+1638372584466:'
+1638372598602:# 誤差変数の間に相関を仮定したモデルの記述
+1638372598616:shp.model2 = '
+1638372598629:失敗不安~叱責
+1638372598641:学習意欲~励まし
+1638372598654:学業成績~失敗不安+学習意欲
+1638372598666:失敗不安~~学習意欲
+1638372598680:'
+1638372604028:shp.fit2 = sem(shp.model2, data=shp)
+1638372609355:summary(shp.fit2, standardized=TRUE, rsquare=TRUE, ci=TRUE, fit.measures=TRUE)
+1638372799978:# 描画
+1638372799992:library(semPlot)
+1638372959223:# 描画
+1638372959237:library(semPlot)
+1638373647104:semPaths(shp.fit, whatLabels="std", layout="tree")
+1638373653395:# 描画
+1638373653405:library(semPlot)
+1638373667795:# 描画
+1638373667806:library("semPlot")
+1638373696340:# 描画
+1638373696352:library(semPlot)
+1638373849039:install.packages("zip")
+1638373864262:install.packages("zip")
+1638373884461:# 描画
+1638373884475:library(semPlot)
+1638374379349:install.packages("semPlot")
+1638374391615:# 描画
+1638374391628:library(semPlot)
+1638374662689:install.packages("igraph")
+1638374677411:# 描画
+1638374677424:library(semPlot)
+1638374827840:# 描画
+1638374827853:library(semPlot)
+1638374953902:library(semPlot)
+1638598633855:# 描画
+1638598633870:library(semPlot)
+1638598670089:# 描画
+1638598670102:install.packages("semPlot")
+1638600138718:library(semPlot)
+1638600358736:csdat = read.csv("~/R_Multivariate_Analysis0726/第03章/顧客満足度データ.csv", fileEncoding = "shift-jis")
+1638600364877:head(csdat)
+1638600367884:str(csdat)
+1638600404880:# 重回帰分析の実行
+1638600404893:res1 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度, data=csdat)
+1638600410576:summary(res1)
+1638600640792:plot(res1)
+1638600870170:res1$residuals
+1638600893135:res1$coefficients
+1638600909427:res1$effects
+1638602556834:# 多重共線性のチェック
+1638602556849:cor(csdat$トレーナー満足度, csdat$トレーナー数)
+1638602590775:resm1 = lm(顧客数~トレーナー満足度, data=csdat)
+1638602590798:summary(resm1)
+1638602597513:resm2 = lm(顧客数~トレーナー満足度+トレーナー数, data=csdat)
+1638602597532:summary(resm2)
+1638602709156:# VIFの算出例
+1638602709170:library(car)
+1638602709382:vif(resm2)
+1638602751380:# 顧客満足度の4変数に関するVIFの算出
+1638602751392:vif(res1)
+1638687620687:# 顧客満足度の4変数に関するVIFの算出
+1638687620701:vif(res1)
+1638691006122:# 切片と偏回帰係数の信頼区間の算出
+1638691006135:confint(res1, level=0.95)
+1638691141847:# 標準回帰係数の算出
+1638691141861:scsdat = as.data.frame(scale(csdat))
+1638691142868:head(scsdat)
+1638691168971:res2 = lm(顧客数~立地満足度+トレーナー数, data=scsdat)
+1638691168988:summary(res2)
+1638691466682:# 質的変数も含めた重回帰分析
+1638691466695:res3 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度+接客研修+入会特典, data=csdat)
+1638691487769:summary(res2)
+1638691493531:# 質的変数も含めた重回帰分析
+1638691493544:res3 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度+接客研修+入会特典, data=csdat)
+1638691495770:summary(res3)
+1638691680163:res4 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度+接客研修+入会特典, data=scsdat)
+1638691684505:summary(res4)
+1638691740563:# AICの算出
+1638691740577:extractAIC(res1)
+1638691741315:extractAIC(res2)
+1638691741917:extractAIC(res3)
+1638691742582:extractAIC(res4)
+1638691801632:# BICの算出
+1638691801648:extractAIC(res1, k=log(30))
+1638691802417:extractAIC(res2, k=log(30))
+1638691803305:extractAIC(res3, k=log(30))
+1638691804975:extractAIC(res4, k=log(30))
+1638693548089:# t分布に基づくp値の算出
+1638693548102:pt(-0.6949209, 25)*2
+1638693604081:(1-pt(3.075611, 25))*2
+1638693659886:# t分布に基づくp値の算出
+1638693659899:summary(res1)
+1638693669886:pt(-0.6949209, 25)*2
+1638693676706:(1-pt(3.075611, 25))*2
+1638694053899:qt(0.025, 25)
+1638694066384:qt(0.975, 25)
+1638694109364:# 下側確率0.025を与えるqt
+1638694109377:qt(0.025, 25)
+1638694110206:qt(0.975, 25)
+1638694157855:# 信頼区間の算出
+1638694157868:21.640 - qt(0.025, 25) *7.036
+1638694170271:# 下側確率0.025を与えるqt
+1638694170285:qt(0.025, 25)
+1638694179933:# 信頼区間の算出
+1638694179946:21.640 + qt(0.025, 25) * 7.036
+1638694192548:21.640 + qt(0.975, 25) * 7.036
+1638694245236:# t分布に基づくp値の算出
+1638694245250:summary(res1)
+1638694982963:csdat = read.csv("~/R_Multivariate_Analysis0726/第04章/ストレス.csv", fileEncoding = "shift-jis")
+1638695002701:sts = read.csv("~/R_Multivariate_Analysis0726/第04章/ストレス.csv", fileEncoding = "shift-jis")
+1638695014412:head(sts)
+1638695103701:res1 = lm(バーンアウト2~バーンアウト1, data=sts)
+1638695110964:summary(res1)
+1638695121416:str(sts)
+1638699920064:res2 = lm(バーンアウト2~バーンアウト1+ストレス+サポート, data=sts)
+1638699930511:summary(res2)
+1638700192348:# 決定係数の増分の検定
+1638700192360:((0.4168-0.4039)/(3-1))/((1-0.4168)/(300-3-1))
+1638700362965:# p値の算出
+1638700362979:1-pf(3.273663, 2, 296)
+1638700386356:pf(3.273663, 2, 296)
+1638700474628:anova(res1, res2)
+1638700659399:(0.4168-0.4039)/(3-1)
+1638700666128:(1-0.4168)/(300-3-1)
+1638701050270:summary(res1)
+1638701231681:predict(res1)
+1638701243147:residuals(res1)
+1638706230830:var(residuals(res1))
+1638706308657:sum((residuals(res1)-mean(residuals(res1)))^2)
+1638706318697:anova(res1, res2)
+1638706339807:sum((residuals(res2)-mean(residuals(res2)))^2)
+1638706361315:# 残差平方和
+1638706361329:sum((residuals(res1)-mean(residuals(res1)))^2)
+1638706361795:sum((residuals(res2)-mean(residuals(res2)))^2)
+1638706458475:sum((residuals(res2)-mean(residuals(res2)))^2) - sum((residuals(res1)-mean(residuals(res1)))^2)
+1638706479074:sum((residuals(res1)-mean(residuals(res1)))^2) - sum((residuals(res2)-mean(residuals(res2)))^2)
+1638706514125:# 決定係数の増分の検定
+1638706514141:# F値の算出
+1638706514154:((0.4168-0.4039)/(3-1))/((1-0.4168)/(300-3-1))
+1638706532878:# p値の算出
+1638706532889:1-pf(3.273663, 2, 296)
+1638706535188:anova(res1, res2)
+1638706567206:predict(res1)
+1638706702190:sum((sts$バーンアウト-mean(sts$バーンアウト))^2)
+1638706712281:sum((sts$バーンアウト1-mean(sts$バーンアウト))^2)
+1638706729179:sum((sts$バーンアウト1-mean(sts$バーンアウト1))^2)
+1638706772501:# 決定係数
+1638706772514:sum((predict(res1)-mean(predict(res1)))^2)/sum((sts$バーンアウト1-mean(sts$バーンアウト1))^2)
+1638706779654:summary(res1)
+1638706823570:# 決定係数
+1638706823584:sum((predict(res1)-mean(predict(res1)))^2)/sum((sts$バーンアウト2-mean(sts$バーンアウト2))^2)
+1638706840197:sum((predict(res2)-mean(predict(res2)))^2)/sum((sts$バーンアウト2-mean(sts$バーンアウト2))^2)
+1638706853490:# 関数anovaを用いた決定係数の増分の検定
+1638706853503:anova(res1, res2)
+1638706865356:summary(res2)
+1638706923002:# 関数anovaを用いた決定係数の増分の検定
+1638706923015:anova(res1, res2)
+1638707046534:# AICとBICの算出
+1638707046547:extractAIC(res1)
+1638707112062:extractAIC(res2)
+1638707137111:extractAIC(res1, k=log(300))
+1638707137676:extractAIC(res2, k=log(300))
+1638707647036:# 中心化
+1638707647049:sts$ストレス.c = sts$ストレス - mean(sts$ストレス)
+1638707647715:sts$サポート.c = sts$サポート - mean(sts$サポート)
+1638707725718:# 中心化前後での相関係数の確認
+1638707725731:sts$交互作用 = sts$ストレス * sts$サポート
+1638707752857:# 中心化前後での相関係数の確認
+1638707752872:sts$交互作用 = sts$ストレス * sts$サポート
+1638707752886:sts$交互作用.c = sts$ストレス.c * sts$サポート.c
+1638707757347:sts$交互作用
+1638707763391:sts$交互作用.c
+1638707827332:# 中心化前後での相関行列
+1638707827346:cor(sts[, c("ストレス", "サポート", "交互作用")])
+1638707869146:cor(sts[, c("ストレス.c", "サポート.c", "交互作用.c")])
+1638709158167:sts$バーンアウト1.c = sts$バーンアウト1 - mean(sts$バーンアウト1)
+1638709257774:# 交互作用効果の検討
+1638709257784:res3 = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.c+交互作用.c, data=sts)
+1638709264863:summary(res3)
+1638709391787:# 決定係数の増分の検定
+1638709391800:anova(res2, res3)
+1638709636805:# 標準偏回帰係数の算出
+1638709636815:z.sts = as.data.frame(scale(sts))
+1638709657542:z.sts = scale(sts)
+1638709662221:# 標準偏回帰係数の算出
+1638709662233:z.sts = as.data.frame(scale(sts))
+1638709791999:res3.z = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.c+交互作用.c, data=z.sts)
+1638709805782:summary(res3.z)
+1638710478201:res3.h = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.h+ストレス.c*サポート.h, data=sts)
+1638710494534:# ソーシャルサポートが多い場合のバーンアウトに対するアウトレス経験の効果
+1638710494547:sts$サポート.h = sts$サポート.c - sd(sts$サポート.c)
+1638710495564:res3.h = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.h+ストレス.c*サポート.h, data=sts)
+1638710507482:summary(res3.h)
+1638710567377:summary(res3)
+1638710641550:# ソーシャルサポートが少ない場合のバーンアウトに対するアウトレス経験の効果
+1638710641562:sts$サポート.l = sts$サポート.c + sd(sts$サポート.c)
+1638710642384:res3.h = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.l+ストレス.c*サポート.l, data=sts)
+1638710643050:summary(res3.l)
+1638710649340:res3.h = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.h+ストレス.c*サポート.h, data=sts)
+1638710652278:res3.l = lm(バーンアウト2~バーンアウト1.c+ストレス.c+サポート.l+ストレス.c*サポート.l, data=sts)
+1638710653218:summary(res3.l)
+1638711081006:summary(res3.h)
+1638711422861:summary(res3.l)
+1638711945235:# 95%信頼区間の算出
+1638711945249:confint(res3)
+1638717345333:bsb = read.csv("~/R_Multivariate_Analysis0726/第04章/野球.csv", fileEncoding = "shift-jis")
+1638717351205:head(bsb)
+1638717412513:# ステップワイズ法による変数選択
+1638717412526:library(MASS)
+1638717473219:base = lm(年俸~1, data=bsb)
+1638717485581:summary(base)
+1638717612716:step.res = stepAIC(base, direction="both",
+1638717612730:scope=list(upper=~打数+安打+本塁打+四球+死球+三振+打率))
+1638717825878:step.res
+1638717898533:summary(step.res)
+1638717938675:?stepAIC
+1638718002406:step.res = stepAIC(base, direction="both",
+1638718002420:scope=list(upper=~打数+安打+本塁打+四球+死球+三振+打率),
+1638718002433:k=log(150))
+1638718017327:step.res = stepAIC(base, direction="both",
+1638718017339:scope=list(upper=~打数+安打+本塁打+四球+死球+三振+打率))
+1638718017403:summary(step.res)
+1638718026531:summary(step.res2)
+1638718030224:step.res2 = stepAIC(base, direction="both",
+1638718030238:scope=list(upper=~打数+安打+本塁打+四球+死球+三振+打率),
+1638718030252:k=log(150))
+1638718032771:summary(step.res2)
+1638718159928:step.res = stepAIC(base, direction="both",
+1638718159941:scope=list(upper=~打数+安打+本塁打+四球+死球+三振+打率))
+1638718288949:summary(step.res2)
+1638718296952:summary(step.res)
