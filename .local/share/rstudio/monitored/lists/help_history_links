@@ -6,8 +6,10 @@ help/library/stats/html/Normal.html,R: The Normal Distribution
 help/library/base/html/factor.html,R: Factors
 help/library/base/html/matrix.html,R: Matrices
 help/library/base/html/seq.html,R: Sequence Generation
-help/library/base/html/paste.html,R: Concatenate Strings
 help/library/base/html/NA.html,R: 'Not Available' / Missing Values
 help/library/base/html/do.call.html,R: Execute a Function Call
 help/library/base/html/sweep.html,R: Sweep out Array Summaries
 help/library/base/html/by.html,R: Apply a Function to a Data Frame Split by Factors
+help/library/knitr/html/opts_chunk.html,R: Default and current chunk options
+help/library/base/html/paste.html,R: Concatenate Strings
+help/library/MASS/html/stepAIC.html,R: Choose a model by AIC in a Stepwise Algorithm

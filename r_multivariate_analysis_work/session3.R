@@ -8,6 +8,9 @@ str(csdat)
 # 重回帰分析の実行
 res1 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度, data=csdat)
 summary(res1)
+res1$residuals
+res1$coefficients
+res1$effects
 
 # 多重共線性のチェック
 cor(csdat$トレーナー満足度, csdat$トレーナー数)
@@ -49,19 +52,42 @@ summary(res2)
 res3 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度+接客研修+入会特典, data=csdat)
 summary(res3)
 
+res4 = lm(顧客数~立地満足度+設備満足度+店舗面積満足度+トレーナー満足度+接客研修+入会特典, data=scsdat)
+summary(res4)
+
 
 # session3-6 --------------------------------------------------------------
 
 # AICの算出
 extractAIC(res1)
+extractAIC(res2)
 extractAIC(res3)
+extractAIC(res4)
 
 # BICの算出
 extractAIC(res1, k=log(30))
+extractAIC(res2, k=log(30))
 extractAIC(res3, k=log(30))
+extractAIC(res4, k=log(30))
 
 
+# seesion3-10 -------------------------------------------------------------
 
+# t分布に基づくp値の算出
+summary(res1)
+pt(-0.6949209, 25)*2
+(1-pt(3.075611, 25))*2
+
+
+# session3-11 -------------------------------------------------------------
+
+# 下側確率0.025を与えるqt
+qt(0.025, 25)
+qt(0.975, 25)
+
+# 信頼区間の算出
+21.640 + qt(0.025, 25) * 7.036
+21.640 + qt(0.975, 25) * 7.036
 
 
 
